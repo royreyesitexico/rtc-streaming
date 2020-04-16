@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Peer from 'peerjs';
+import { Button } from 'reactstrap';
 
 export function Provider() {
-  const [localStream, setLocalStream] = useState(null);
   const peer = new Peer('123456', {
     host: 'localhost',
     port: 9000,
@@ -24,10 +24,15 @@ export function Provider() {
       navigator.getDisplayMedia({ video: true }).then(console.log).catch(console.error);
     }
   }
-  useEffect(() => {
-    checkNavigator();
-  }, [])
+
   return (
-    <video controls autoPlay playsInline muted={false} volume={0} style={{ width: 1000, height: 600 }} />
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <video controls autoPlay playsInline muted={false} volume={0} style={{ width: 1000, height: 600 }} />
+      <div style={{ marginTop: 15 }}>
+        <Button color="primary" onClick={checkNavigator}>
+          Start Sharing
+        </Button>
+      </div>
+    </div>
   );
 }

@@ -1,9 +1,10 @@
 import React from 'react';
 import Peer from 'peerjs';
-import { createEmptyVideoTrack, createEmptyAudioTrack } from './utils'
+import { createEmptyVideoTrack, createEmptyAudioTrack } from './utils';
+import uuid from 'uuid/v1';
 
 export function Viewer() {
-  const peer = new Peer('234567', {
+  const peer = new Peer(uuid(), {
     host: 'localhost',
     port: 9000,
     path: '/myapp'
@@ -17,7 +18,7 @@ export function Viewer() {
     video.srcObject = stream;
   });
   return (
-    <div className="App">
+    <div>
       <video controls autoPlay playsInline muted={false} volume={0} style={{ width: 1000, height: 600 }} />
     </div>
   );
