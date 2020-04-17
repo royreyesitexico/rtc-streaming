@@ -17,6 +17,7 @@ export function Viewer() {
     const video = document.querySelector('video');
     video.srcObject = stream;
   });
+  call.on('error', () => console.log('Valio verdura'))
   return (
     <div>
       <video controls autoPlay playsInline muted={false} volume={0} style={{ width: 1000, height: 600 }} />
